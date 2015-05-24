@@ -1,3 +1,5 @@
+// SPOJ - http://www.spoj.com/problems/PRJAN15F/
+
 #include <bits/stdc++.h>
 using namespace std;
 
