@@ -5,21 +5,25 @@ template <class T>
 class Stack{
     T *a = new T [1];
     int sz,t; // t = top, sz = size
+protected:
+    void resize(); // resize stack when needed
 public:
     Stack(); // initialize size,top
-    void resize(); // resize stack when needed
     void push(T val); // push value to the stack
     void pop(); // pop from stack
     void print(); // print full stack
     int size(); // get number of elements
     T top(); // get the top element
+    bool empty();
 };
+
 template <class T>
 Stack<T>::Stack()
 {
     sz = 1;
     t = -1;
 }
+
 template <class T>
 void Stack<T>::resize()
 {
@@ -30,6 +34,7 @@ void Stack<T>::resize()
     delete []a;
     a = b;
 }
+
 template <class T>
 void Stack<T>::push(T val)
 {
@@ -38,14 +43,14 @@ void Stack<T>::push(T val)
     t++;
     a[t] = val;
 }
+
 template <class T>
 void Stack<T>::pop()
 {
-    if(t<0)
-        cout << "Can not pop, stack empty!" << endl;
-    else
+    if(t>-1)
         t--;
 }
+
 template <class T>
 void Stack<T>::print()
 {
@@ -54,15 +59,24 @@ void Stack<T>::print()
         cout << a[i] << " ";
     cout << endl;
 }
+
 template <class T>
 int Stack<T>::size()
 {
     return t+1;
 }
+
 template <class T>
 T Stack<T>::top()
 {
     return a[t];
+}
+
+template <class T>
+bool Stack<T>::empty()
+{
+    if(t<0) return true;
+    return false;
 }
 
 int main()
