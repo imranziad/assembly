@@ -1,14 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class stack{
-
+class Stack{
+    int *a = new int [1];
+    int size,top;
+public:
+    Stack();
+    void resize();
+    void push(int val);
+    void pop();
+    void print();
 };
-
-int *a = new int [1];
-int size=1, top=-1;
-
-void resize()
+Stack::Stack()
+{
+    size = 1;
+    top = -1;
+}
+void Stack::resize()
 {
     size *= 2;
     int *b = new int [size];
@@ -17,22 +25,21 @@ void resize()
     delete []a;
     a = b;
 }
-
-void push(int val)
+void Stack::push(int val)
 {
     if(top+1==size)
         resize();
     top++;
     a[top] = val;
 }
-void pop()
+void Stack::pop()
 {
     if(top<0)
         cout << "Can not pop, stack empty!" << endl;
     else
         top--;
 }
-void print()
+void Stack::print()
 {
     cout << "Current stack: ";
     for(int i=0; i<=top; i++)
@@ -40,17 +47,21 @@ void print()
     cout << endl;
 }
 
-int main()
-{
-    push(5);
-    print();
-    push(5);
-    print();
-    push(5);
-    print();
-    push(5);
-    print();
+int main(){
+    Stack s;
 
+    s.push(5);
+    s.print();
+    s.push(7);
+    s.print();
+    s.push(4);
+    s.print();
+    s.pop();
+    s.print();
+    s.push(2);
+    s.print();
+    s.push(6);
+    s.print();
 
     return 0;
 }
