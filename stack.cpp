@@ -5,17 +5,17 @@ using namespace std;
 template <class T>
 class Stack{
     T *a = new T [1];
-    int sz,t; // t = top, sz = size
+    int sz,t;           // t = top, sz = size
 protected:
-    void resize(); // resize stack when needed
+    void resize();      // resize stack when needed
 public:
-    Stack(); // initialize size,top
-    void push(T val); // push value to the stack
-    void pop(); // pop from stack
-    void print(); // print full stack
-    int size(); // get number of elements
-    T top(); // get the top element
-    bool empty();
+    Stack();            // initialize size,top
+    void push(T val);   // push value to the stack
+    void pop();         // pop from stack
+    void print();       // print full stack
+    int size();         // get number of elements
+    T top();            // get the top element
+    bool empty();       // check if the stack is empty
 };
 
 template <class T>
