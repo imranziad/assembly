@@ -1,67 +1,88 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+template <class T>
 class Stack{
-    int *a = new int [1];
-    int size,top;
+    T *a = new T [1];
+    int sz,t; // t = top, sz = size
 public:
-    Stack();
-    void resize();
-    void push(int val);
-    void pop();
-    void print();
+    Stack(); // initialize size,top
+    void resize(); // resize stack when needed
+    void push(T val); // push value to the stack
+    void pop(); // pop from stack
+    void print(); // print full stack
+    int size(); // get number of elements
+    T top(); // get the top element
 };
-Stack::Stack()
+template <class T>
+Stack<T>::Stack()
 {
-    size = 1;
-    top = -1;
+    sz = 1;
+    t = -1;
 }
-void Stack::resize()
+template <class T>
+void Stack<T>::resize()
 {
-    size *= 2;
-    int *b = new int [size];
-    for(int i=0; i<=top; i++)
+    sz *= 2;
+    T *b = new T [sz];
+    for(int i=0; i<=t; i++)
         b[i] = a[i];
     delete []a;
     a = b;
 }
-void Stack::push(int val)
+template <class T>
+void Stack<T>::push(T val)
 {
-    if(top+1==size)
+    if(t+1==sz)
         resize();
-    top++;
-    a[top] = val;
+    t++;
+    a[t] = val;
 }
-void Stack::pop()
+template <class T>
+void Stack<T>::pop()
 {
-    if(top<0)
+    if(t<0)
         cout << "Can not pop, stack empty!" << endl;
     else
-        top--;
+        t--;
 }
-void Stack::print()
+template <class T>
+void Stack<T>::print()
 {
     cout << "Current stack: ";
-    for(int i=0; i<=top; i++)
+    for(int i=0; i<=t; i++)
         cout << a[i] << " ";
     cout << endl;
 }
+template <class T>
+int Stack<T>::size()
+{
+    return t+1;
+}
+template <class T>
+T Stack<T>::top()
+{
+    return a[t];
+}
 
-int main(){
-    Stack s;
+int main()
+{
+    Stack <string> s;
 
-    s.push(5);
+    s.push("abc");
     s.print();
-    s.push(7);
+    s.push("bcd");
     s.print();
-    s.push(4);
+    s.push("efg");
     s.print();
     s.pop();
     s.print();
-    s.push(2);
+    s.push("xyz");
     s.print();
-    s.push(6);
+    s.push("pqr");
     s.print();
+
+    cout << s.top() << endl;
 
     return 0;
 }
